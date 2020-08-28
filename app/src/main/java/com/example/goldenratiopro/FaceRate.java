@@ -22,13 +22,23 @@ public class FaceRate extends AppCompatActivity {
 
         rateView=findViewById(R.id.textRate);
 
-        WLratio=getIntent().getDoubleExtra("LWratio",0);
-        lenghtratio=getIntent().getDoubleExtra("LNratio",0);
-        LipRatio=getIntent().getDoubleExtra("LipRatio",0);
+        Intent intent=getIntent();
+        Bundle extras= intent.getExtras();
 
-        String Rating= String.valueOf(CalculateRating(WLratio, lenghtratio,LipRatio));
+        if(extras==null){
+            rateView.setText("Couldn't Detect a Face");
+        }
 
-        rateView.setText(Rating);
+        else {
+
+            WLratio = getIntent().getDoubleExtra("LWratio", 0);
+            lenghtratio = getIntent().getDoubleExtra("LNratio", 0);
+            LipRatio = getIntent().getDoubleExtra("LipRatio", 0);
+
+            String Rating = String.valueOf(CalculateRating(WLratio, lenghtratio, LipRatio));
+
+            rateView.setText(Rating);
+        }
 
     }
 

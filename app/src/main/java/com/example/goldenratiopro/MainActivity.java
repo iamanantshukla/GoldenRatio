@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                                     .build();
                     camera = cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalysis ,preview, imageCapture);
-                    //Preview.SurfaceProvider surfaceProvider= viewFinder.createSurfaceProvider();
                     preview.setSurfaceProvider(previewView.createSurfaceProvider());
                 } catch (InterruptedException | ExecutionException e) {
 
@@ -171,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                                                         Rect bounds = face.getBoundingBox();
                                                         float rotY = face.getHeadEulerAngleY();
                                                         float rotZ = face.getHeadEulerAngleZ();
+                                                        //getting face contours
                                                         List<PointF> ovalface= face.getContour(FaceContour.FACE).getPoints();
                                                         List<PointF> nose=face.getContour(FaceContour.NOSE_BRIDGE).getPoints();
                                                         List<PointF> upperliptop=face.getContour(FaceContour.UPPER_LIP_TOP).getPoints();
@@ -186,31 +186,14 @@ public class MainActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     // Task failed with an exception
-                                                    // ...
+                                                    Log.e("FaceDetect fail", "onFailure: ",e );
+
                                                 }
                                             });
 
             }
         }});
 
-
-        /*imageCapture.takePicture(ContextCompat.getMainExecutor(this),
-                new OnImageCapturedCallback(){
-
-                    @Override
-                    public void onCaptureSuccess(@NonNull ImageProxy imageProxy) {
-                        Image mediaImage = imageProxy.getImage();
-                        if (mediaImage != null) {
-                            InputImage image =
-                                    InputImage.fromMediaImage(mediaImage, imageProxy.getImageInfo().getRotationDegrees());
-                    }
-
-                    @Override
-                    public void onError(@NonNull ImageCaptureException exception) {
-                        Toast.makeText(getApplicationContext(), "CaptureError", Toast.LENGTH_LONG).show();
-                        super.onError(exception);
-                    }
-                });*/
 
 
     }
@@ -219,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                                 ,List<PointF> lowerliptop, List<PointF> lowerlipbtm) {
 
         if(nose!=null){
-            Toast.makeText(getApplicationContext(),"nose",Toast.LENGTH_LONG).show();
+
             //Get Nose points
             float nosebtmx=nose.get(1).x, nosebtmy=nose.get(1).y;
 

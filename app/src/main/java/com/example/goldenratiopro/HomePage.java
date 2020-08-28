@@ -15,9 +15,12 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class HomePage extends AppCompatActivity implements HomePageAdapter.OnNot
     List<HomeModel> homeModel;
     HomePageAdapter homePageAdapter;
     ViewPager2 viewPager;
-    ImageView guide,faceRate;
+    ImageView guide,faceRate,optionMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,33 @@ public class HomePage extends AppCompatActivity implements HomePageAdapter.OnNot
         setContentView(R.layout.activity_home_page);
         ActionBar actionBar= getSupportActionBar();
         actionBar.hide();
+
+        //Feedback Drop Down without Action Bar
+
+        optionMenu=findViewById(R.id.option);
+        PopupMenu dropdownMenu= new PopupMenu(getApplicationContext(), optionMenu);
+        Menu menu = dropdownMenu.getMenu();
+
+        menu.add(0,0,0,"Send Feedback");
+
+        dropdownMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId()==0){
+                    startActivity(new Intent(HomePage.this, firebasefeedback.class));
+                }
+                return false;
+            }
+        });
+
+        optionMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dropdownMenu.show();
+            }
+        });
+
+
 
         guide=findViewById(R.id.imageGuide);
 
@@ -66,7 +96,7 @@ public class HomePage extends AppCompatActivity implements HomePageAdapter.OnNot
         homeModel.add(new HomeModel(R.mipmap.human));
         homeModel.add(new HomeModel(R.mipmap.nature));
         homeModel.add(new HomeModel(R.mipmap.painting));
-        homeModel.add(new HomeModel(R.mipmap.design));
+        homeModel.add(new HomeModel(R.mipmap.logo));
         homeModel.add(new HomeModel(R.mipmap.building));
 
 
@@ -113,5 +143,6 @@ public class HomePage extends AppCompatActivity implements HomePageAdapter.OnNot
         }
 
     }
+
 
 }

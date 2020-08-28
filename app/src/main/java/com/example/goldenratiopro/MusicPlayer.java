@@ -9,13 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
-import static android.widget.SeekBar.*;
+
 
 
 public class MusicPlayer extends AppCompatActivity {
@@ -32,64 +31,6 @@ public class MusicPlayer extends AppCompatActivity {
 
 
 
-    public void play(View view){
-
-        if(currentState==false) {
-
-            playPause.setImageResource(R.mipmap.pause);
-
-            if (theplayer == 0) {
-                mediaPlayer.start();
-
-                currentState = true;
-            } else {
-                mediaPlayer.seekTo(length);
-                mediaPlayer.start();
-                currentState=true;
-            }
-        }
-        else{
-            mediaPlayer.pause();
-            playPause.setImageResource(R.mipmap.play);
-            theplayer=1;
-            length=mediaPlayer.getCurrentPosition();
-            currentState=false;
-        }
-
-
-    }
-
-    public void next(View view){
-        if(playlist==0) {
-            playlist++;
-            mediaPlayer.stop();
-            playsong(playlist);
-
-        }
-
-        else if(playlist==1) {
-            playlist++;
-            mediaPlayer.stop();
-            playsong(playlist);
-
-        }
-    }
-
-    public void previous(View view){
-        if(playlist==0){
-            Toast.makeText(getApplicationContext(), "This is the First Song", Toast.LENGTH_LONG).show();
-        }
-        else if(playlist==1){
-            playlist--;
-            mediaPlayer.stop();
-            playsong(playlist);
-        }
-        else if(playlist==2){
-            playlist--;
-            mediaPlayer.stop();
-            playsong(playlist);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,15 +48,15 @@ public class MusicPlayer extends AppCompatActivity {
 
         playsong(playlist);
 }
-
+    //setting up different music
     private void playsong(int playlist) {
 
         if(playlist==0) {
 
             audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.numb);
-            songName.setText("Numb");
-            artistName.setText("Linkin Park");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.symphony);
+            songName.setText("5th Symphony");
+            artistName.setText("Ludwig van Beethoven");
 
         }
         if(playlist==1){
@@ -155,7 +96,9 @@ public class MusicPlayer extends AppCompatActivity {
             circularSeekBar.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
-
+                    if(fromUser) {
+                        mediaPlayer.seekTo((int) progress);
+                    }
                 }
 
                 @Override
@@ -171,12 +114,78 @@ public class MusicPlayer extends AppCompatActivity {
 
     }
 
+    //Play song method
+
+    public void play(View view){
+
+        if(currentState==false) {
+
+            playPause.setImageResource(R.mipmap.pause);
+
+            if (theplayer == 0) {
+                mediaPlayer.start();
+
+                currentState = true;
+            } else {
+                mediaPlayer.seekTo(length);
+                mediaPlayer.start();
+                currentState=true;
+            }
+        }
+        else{
+            mediaPlayer.pause();
+            playPause.setImageResource(R.mipmap.play);
+            theplayer=1;
+            length=mediaPlayer.getCurrentPosition();
+            currentState=false;
+        }
+
+
+    }
+
+    //next song
+
+    public void next(View view){
+        if(playlist==0) {
+            playlist++;
+            mediaPlayer.stop();
+            playsong(playlist);
+
+        }
+
+        else if(playlist==1) {
+            playlist++;
+            mediaPlayer.stop();
+            playsong(playlist);
+
+        }
+    }
+
+    //previous song
+    public void previous(View view){
+        if(playlist==0){
+            Toast.makeText(getApplicationContext(), "This is the First Song", Toast.LENGTH_LONG).show();
+        }
+        else if(playlist==1){
+            playlist--;
+            mediaPlayer.stop();
+            playsong(playlist);
+        }
+        else if(playlist==2){
+            playlist--;
+            mediaPlayer.stop();
+            playsong(playlist);
+        }
+    }
+
+    //finish music activity to stop playing music in background
     @Override
     public void onBackPressed() {
         mediaPlayer.stop();
         finish();
         super.onBackPressed();
     }
+
 
 
 }

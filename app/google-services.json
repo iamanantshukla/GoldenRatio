@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "508096378694",
+    "firebase_url": "https://goldenratio-c9b91.firebaseio.com",
+    "project_id": "goldenratio-c9b91",
+    "storage_bucket": "goldenratio-c9b91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508096378694:android:0cca8d63284f5e42839747",
+        "android_client_info": {
+          "package_name": "com.example.goldenratiopro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508096378694-dsbee0koq1h1l2e81skachoufcv39nsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm0aMg5LJ8HTOKKEwmzZu_QEgiQS_OaoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508096378694-dsbee0koq1h1l2e81skachoufcv39nsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
