@@ -11,6 +11,8 @@ Mathematicians since Euclid have studied the properties of the golden ratio, inc
 2. Interactive way of giving examples like Music player.
 
 3. Short and crisp Guide Activity to get to know about Golden Ratio
+
+4. Few Neumorphic Design elements in Home screen and feedback form
 ## Tech-Stack
 1. Google Firebase
 
