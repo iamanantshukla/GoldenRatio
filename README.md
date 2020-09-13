@@ -22,12 +22,18 @@ Mathematicians since Euclid have studied the properties of the golden ratio, inc
 
 4. Google ML Kit
 
-5. Adobe XD for UI
+5. Adobe XD and Illustrator for UI
+
+6. Lottie Airbnb design
+
+7. Adobe Aftereffects
 
 ## Instruction
 1. Clone the repository and open it with Android Studio
 
 2. And than Build APK.
+
+3. Best with large size phone display (>5.5 inch)
 
 ## Developer
 Anant Shukla
