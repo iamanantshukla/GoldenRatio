@@ -1,5 +1,6 @@
 package com.example.goldenratiopro;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -117,7 +118,6 @@ public class HomePage extends AppCompatActivity implements HomePageAdapter.OnNot
 
 
 
-
     }
 
     @Override
@@ -143,6 +143,8 @@ public class HomePage extends AppCompatActivity implements HomePageAdapter.OnNot
         }
 
     }
+
+
 
 
 }
